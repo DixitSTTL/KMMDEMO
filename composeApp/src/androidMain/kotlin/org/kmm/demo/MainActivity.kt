@@ -12,12 +12,12 @@ import androidx.core.view.WindowCompat
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        WindowCompat.setDecorFitsSystemWindows(window, false)
+//        WindowCompat.setDecorFitsSystemWindows(window, false)
 
         setContent {
-            this.window.statusBarColor = ContextCompat.getColor(this, android.R.color.transparent)
-            this.window.navigationBarColor =
-                ContextCompat.getColor(this, android.R.color.transparent)
+//            this.window.statusBarColor = ContextCompat.getColor(this, android.R.color.transparent)
+//            this.window.navigationBarColor =
+//                ContextCompat.getColor(this, android.R.color.transparent)
             App()
         }
     }

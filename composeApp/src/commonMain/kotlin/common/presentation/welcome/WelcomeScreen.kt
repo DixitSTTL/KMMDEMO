@@ -5,14 +5,11 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
@@ -59,15 +56,13 @@ class WelcomeScreen :
         Box(Modifier.fillMaxSize().background(color = Color(0xff232325))) {
             AnimatedVisibility(state.showContent) {
                 Image(
-                    painterResource("car2.png"),
+                    painterResource("car1.png"),
                     null,
-                    modifier = Modifier.size(500.dp)
 
-                )
+                    )
             }
             Column(
-                Modifier.align(Alignment.CenterEnd).padding(20.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
+                Modifier.align(Alignment.BottomCenter).padding(20.dp, 20.dp, 20.dp, 40.dp),
             ) {
 
                 Text(
@@ -78,19 +73,17 @@ class WelcomeScreen :
                         fontSize = 26.sp,
                         fontFamily = FontFamily(fontResources("barlow_bold")),
                     ),
-                    textAlign = TextAlign.Center
                 )
 
                 Spacer(Modifier.height(10.dp))
 
                 Text(
-                    text = "Premium and prestige car daily rental. Experience the thrill at a lower price",
+                    text = "Premium and prestige car daily rental.Experience the thrill at a lower price",
                     style = TextStyle(
                         color = Color(0xff8E8E8E),
                         fontSize = 14.sp,
                         fontFamily = FontFamily(fontResources("barlow_medium")),
                     ),
-                    textAlign = TextAlign.Center
                 )
 
                 Spacer(Modifier.height(30.dp))

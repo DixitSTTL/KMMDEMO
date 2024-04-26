@@ -23,9 +23,8 @@ object MainApp : Screen {
 
 
         MaterialTheme {
-            Navigator(WelcomeScreen()) {
-                SlideTransition(it)
-            }
+            MainContainer.Content()
+
 
         }
     }
