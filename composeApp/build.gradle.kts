@@ -61,6 +61,14 @@ kotlin {
             implementation(libs.kotlinx.datetime)
             implementation(libs.kotlin.coroutines)
 
+            //ktor-client
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.json.serialization)
+            implementation(libs.ktor.content.negotiation)
+            implementation(libs.ktor.logging)
+            implementation(libs.ktor.client.cio)
+            implementation(libs.kotlin.serialization)
+
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
@@ -108,8 +116,13 @@ compose.desktop {
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb, TargetFormat.Exe)
-            packageName = "org.kmm.demo"
+            packageName = "KMPCarRentApp"
             packageVersion = "1.0.0"
+
+            windows{
+                shortcut = true
+                vendor = "Dixit Kukadiya"
+            }
             //.\gradlew createDistributable
 
 

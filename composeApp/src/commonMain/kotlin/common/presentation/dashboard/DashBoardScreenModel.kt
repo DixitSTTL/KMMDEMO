@@ -17,6 +17,7 @@ class DashBoardScreenModel(private val manageDashBoardUseCase: ManageDashBoardUs
     override val viewModelScope: CoroutineScope = coroutineScope
 
     override fun onClickToDetail() {
+        sendNewEffect(DashBoardUIEffect.NavigateToDetail)
     }
 
     override fun updateCurrentModel(model: DataMoreCars) {

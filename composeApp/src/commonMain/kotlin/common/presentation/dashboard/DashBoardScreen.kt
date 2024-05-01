@@ -34,6 +34,7 @@ import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.navigator.Navigator
 import common.data.model.DataMoreCars
 import common.presentation.base.BaseScreen
+import common.presentation.detail.DetailScreen
 import fontResources
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
@@ -271,7 +272,10 @@ class DashBoardScreen :
                         Image(
                             painter = painterResource("map.png"),
                             contentDescription = "",
-                            contentScale = ContentScale.Crop
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier.clickable {
+                                listener.onClickToDetail()
+                            }
                         )
                     }
                 }
@@ -405,8 +409,8 @@ class DashBoardScreen :
 
     override fun onEffect(effect: DashBoardUIEffect, navigator: Navigator) {
 
-//        when (effect) {
-//            WelcomeUIEffect.NavigateToDashBoard -> navigator.root?.push(LoginScreen())
-//        }
+        when (effect) {
+            DashBoardUIEffect.NavigateToDetail -> navigator.push(DetailScreen())
+        }
     }
 }

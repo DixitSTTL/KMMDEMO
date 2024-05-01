@@ -26,6 +26,11 @@ kotlin-datetime-version = "0.4.0"
 coroutine-version = "1.7.3"
 
 
+ktor-version = "2.3.3"
+ktor-logging-version = "1.5.0"
+serialization_version = "1.6.0"
+
+
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
@@ -62,6 +67,13 @@ koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koin-com
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlin-datetime-version" }
 kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutine-version" }
 
+#ktor
+ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor-version" }
+ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor-version" }
+ktor-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor-version" }
+ktor-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor-version" }
+ktor-json-serialization = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor-version" }
+kotlin-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization_version" }
 
 
 [plugins]
