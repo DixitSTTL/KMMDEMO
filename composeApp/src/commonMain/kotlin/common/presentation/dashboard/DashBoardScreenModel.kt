@@ -5,8 +5,13 @@ import common.data.model.DataMoreCars
 import common.domain.usecase.ManageDashBoardUseCase
 import common.presentation.base.BaseScreenModel
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
+import kotlinx.coroutines.launch
 
-class DashBoardScreenModel(private val manageDashBoardUseCase: ManageDashBoardUseCase) :
+class DashBoardScreenModel(
+    private val manageDashBoardUseCase: ManageDashBoardUseCase,
+) :
     BaseScreenModel<DashboardUIState, DashBoardUIEffect>(DashboardUIState()),
     DashBoardInteractionListener {
 
@@ -23,6 +28,9 @@ class DashBoardScreenModel(private val manageDashBoardUseCase: ManageDashBoardUs
     override fun updateCurrentModel(model: DataMoreCars) {
         updateState {
             it.copy(currentModel = model)
+        }
+        CoroutineScope(Dispatchers.IO).launch {
+            manageDashBoardUseCase.addToRoom(model)
         }
     }
 

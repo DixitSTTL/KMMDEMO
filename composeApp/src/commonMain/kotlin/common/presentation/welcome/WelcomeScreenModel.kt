@@ -15,6 +15,14 @@ class WelcomeScreenModel(private val manageWelcomeUseCase: IManageWelcomeUseCase
 
     }
 
+    override fun onClickToRoom() {
+        sendNewEffect(WelcomeUIEffect.NavigateToRoom)
+    }
+
+    override fun onClickToKtor() {
+        sendNewEffect(WelcomeUIEffect.NavigateToKtor)
+    }
+
     override fun onShowContent(isShow: Boolean) {
         updateState { it.copy(showContent = isShow) }
     }

@@ -1,38 +1,65 @@
 package common.data.gateway.fake
 
 import common.data.model.DataMoreCars
+import common.database.AppDatabase
 import common.domain.gateway.IFakeMoreCarsGateway
+import kotlinx.coroutines.flow.FlowCollector
 
-class FakeMoreCarsGateway : IFakeMoreCarsGateway {
+class FakeMoreCarsGateway(private val appDatabase: AppDatabase) : IFakeMoreCarsGateway {
 
     private val moreCarsLit =
         listOf(
             DataMoreCars(
-                "Fortuner GR", "12", "10", false, "car3.png"
+                name = "Fortuner GR", kms = "12", fule = "10", isEv = false, image = "car3.png"
             ),
             DataMoreCars(
-                "Tata Nexon EV", "4", "60", true, "nexon.png"
+                name = "Tata Nexon EV", kms = "4", fule = "60", isEv = true, image = "nexon.png"
             ),
             DataMoreCars(
-                "Rang Rover", "2.8", "25", false, "range-rover.png"
+                name = "Rang Rover",
+                kms = "2.8",
+                fule = "25",
+                isEv = false,
+                image = "range-rover.png"
             ),
             DataMoreCars(
-                "Audi E-Tron", "7", "47", true, "e-tron.png"
+                name = "Audi E-Tron", kms = "7", fule = "47", isEv = true, image = "e-tron.png"
             ),
             DataMoreCars(
-                "Porshe Taycan", "10", "62", true, "taycan.png"
+                name = "Porshe Taycan", kms = "10", fule = "62", isEv = true, image = "taycan.png"
             ),
             DataMoreCars(
-                "Mercedes c-class", "3.3", "20", false, "mercedes-c-class.png"
+                name = "Mercedes c-class",
+                kms = "3.3",
+                fule = "20",
+                isEv = false,
+                image = "mercedes-c-class.png"
             ),
             DataMoreCars(
-                "Lamborgini Urus-s", "5", "30", false, "lamorgini-urus-s.png"
+                name = "Lamborgini Urus-s",
+                kms = "5",
+                fule = "30",
+                isEv = false,
+                image = "lamorgini-urus-s.png"
             )
         )
 
 
     override fun getMoreCars(): List<DataMoreCars> {
         return moreCarsLit
+
+    }
+
+    override suspend fun addToRoom(dataMoreCars: DataMoreCars) {
+
+        appDatabase.getDao().insert(dataMoreCars)
+
+        appDatabase.getDao().getAllAsFlow().collect(FlowCollector {
+
+            it.forEach {
+                println("DAtaCarrr-- " + it)
+            }
+        })
 
     }
 }

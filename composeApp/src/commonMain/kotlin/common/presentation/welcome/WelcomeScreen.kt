@@ -27,8 +27,11 @@ import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.navigator.Navigator
 import common.presentation.base.BaseScreen
 import common.presentation.dashboard.DashBoardScreen
+import common.presentation.ktorDemo.KtorScreen
+import common.presentation.roomDemo.RoomScreen
 import fontResources
 import kotlinx.coroutines.delay
+import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 
@@ -56,7 +59,7 @@ class WelcomeScreen :
         Box(Modifier.fillMaxSize().background(color = Color(0xff232325))) {
             AnimatedVisibility(state.showContent) {
                 Image(
-                    painterResource("car1.png"),
+                    painterResource(resource = DrawableResource("car1.png")),
                     null,
 
                     )
@@ -102,7 +105,7 @@ class WelcomeScreen :
                         style = TextStyle(
                             color = Color.Black,
                             fontSize = 20.sp,
-                            fontFamily = FontFamily(fontResources("barlow_bold")),
+                            fontFamily = FontFamily(fontResources("barlow_semi_bold")),
                         ),
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Center
@@ -111,6 +114,55 @@ class WelcomeScreen :
 
                 }
 
+                Spacer(Modifier.height(12.dp))
+
+                Button(
+                    onClick = { listener.onClickToKtor() },
+                    colors = ButtonDefaults.buttonColors(
+                        contentColor = Color.White,
+                        backgroundColor = Color.White
+                    ),
+                    shape = RoundedCornerShape(50),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text(
+                        text = "Ktor Demo",
+                        style = TextStyle(
+                            color = Color.Black,
+                            fontSize = 20.sp,
+                            fontFamily = FontFamily(fontResources("barlow_semi_bold")),
+                        ),
+                        modifier = Modifier.fillMaxWidth(),
+                        textAlign = TextAlign.Center
+
+                    )
+
+                }
+
+                Spacer(Modifier.height(12.dp))
+
+                Button(
+                    onClick = { listener.onClickToRoom() },
+                    colors = ButtonDefaults.buttonColors(
+                        contentColor = Color.White,
+                        backgroundColor = Color.White
+                    ),
+                    shape = RoundedCornerShape(50),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text(
+                        text = "Room Demo",
+                        style = TextStyle(
+                            color = Color.Black,
+                            fontSize = 20.sp,
+                            fontFamily = FontFamily(fontResources("barlow_semi_bold")),
+                        ),
+                        modifier = Modifier.fillMaxWidth(),
+                        textAlign = TextAlign.Center
+
+                    )
+
+                }
 
             }
         }
@@ -121,6 +173,8 @@ class WelcomeScreen :
 
         when (effect) {
             WelcomeUIEffect.NavigateToDashBoard -> navigator.push(DashBoardScreen())
+            WelcomeUIEffect.NavigateToRoom -> navigator.push(RoomScreen())
+            WelcomeUIEffect.NavigateToKtor -> navigator.push(KtorScreen())
         }
     }
 }

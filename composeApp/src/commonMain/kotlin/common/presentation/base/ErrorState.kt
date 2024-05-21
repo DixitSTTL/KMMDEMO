@@ -1,11 +1,10 @@
 package common.presentation.base
 
 
-
-
 sealed interface ErrorState {
     data class CartIsFull(val message: String) : ErrorState
     data class RestaurantClosed(val message: String) : ErrorState
+
     // region Authorization
     data object UnAuthorized : ErrorState
     data object InvalidUsername : ErrorState

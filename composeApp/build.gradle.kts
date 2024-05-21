@@ -5,6 +5,10 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
+
+    alias(libs.plugins.room)
+    alias(libs.plugins.ksp)
+
 }
 
 kotlin {
@@ -28,6 +32,7 @@ kotlin {
         iosTarget.binaries.framework {
             baseName = "ComposeApp"
             isStatic = true
+            linkerOpts.add("-lsqlite3")
         }
     }
 
@@ -38,7 +43,6 @@ kotlin {
             implementation(libs.compose.ui.tooling.preview)
             implementation(libs.androidx.activity.compose)
             api(libs.koin.android)
-
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -68,6 +72,16 @@ kotlin {
             implementation(libs.ktor.logging)
             implementation(libs.ktor.client.cio)
             implementation(libs.kotlin.serialization)
+
+            //web view
+            api(libs.calf)
+
+            //room
+            implementation(libs.androidx.room.runtime)
+            implementation("androidx.sqlite:sqlite")
+            implementation("androidx.sqlite:sqlite-bundled")
+//            implementation(libs.androidx.room.compiler)
+
 
         }
         desktopMain.dependencies {
@@ -107,9 +121,22 @@ android {
     }
     dependencies {
         debugImplementation(libs.compose.ui.tooling)
+
     }
 }
 
+dependencies {
+    ksp(libs.androidx.room.compiler)
+//    add("kspAndroid", libs.androidx.room.compiler)
+//    add("kspIosSimulatorArm64", libs.androidx.room.compiler)
+//    add("kspIosX64", libs.androidx.room.compiler)
+//    add("kspIosArm64", libs.androidx.room.compiler)
+//    add("kspJvm", libs.androidx.room.compiler)
+//    Room
+}
+room {
+    schemaDirectory("$projectDir/schemas")
+}
 compose.desktop {
     application {
         mainClass = "MainKt"

@@ -6,6 +6,7 @@ import common.data.model.DataMoreCars
 
 interface IManageDashBoardUseCase {
     fun getMoreCars(): List<DataMoreCars>
+    suspend fun addToRoom(dataMoreCars: DataMoreCars)
 
 }
 
@@ -15,5 +16,8 @@ class ManageDashBoardUseCase(private val fakeMoreCarsGateway: FakeMoreCarsGatewa
         return fakeMoreCarsGateway.getMoreCars()
     }
 
+    override suspend fun addToRoom(dataMoreCars: DataMoreCars) {
+        return fakeMoreCarsGateway.addToRoom(dataMoreCars)
+    }
 
 }

@@ -36,6 +36,8 @@ import common.data.model.DataMoreCars
 import common.presentation.base.BaseScreen
 import common.presentation.detail.DetailScreen
 import fontResources
+import getPlatform
+import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 
@@ -57,269 +59,546 @@ class DashBoardScreen :
 
         Box(Modifier.fillMaxSize().background(color = Color(0xffffffff))) {
 
-            Column(
-                Modifier.padding(20.dp, 0.dp).verticalScroll(rememberScrollState()),
-            ) {
+            if (getPlatform().name.startsWith("A")) {
 
-                Row(modifier = Modifier.fillMaxWidth()) {
-
-                    Button(
-                        {},
-                        colors = ButtonDefaults.buttonColors(
-                            contentColor = Color.Transparent,
-                            backgroundColor = Color.Transparent
-                        ),
-                        elevation = ButtonDefaults.elevation(
-                            defaultElevation = 0.dp,
-                            pressedElevation = 0.dp
-                        ),
-                        shape = RoundedCornerShape(20.dp),
-                        modifier = Modifier.weight(1f)
-                    ) {
-                        Image(
-                            painterResource("ic_info.xml"),
-                            ""
-                        )
-                        Spacer(modifier = Modifier.width(6.dp))
-                        Text(
-                            text = "Information", style = TextStyle(
-                                color = Color(0xff2C2B34),
-                                fontFamily = FontFamily(fontResources("barlow_semi_bold")),
-                            )
-                        )
-
-                    }
-
-                    Spacer(modifier = Modifier.width(12.dp))
-
-                    Button(
-                        {},
-                        colors = ButtonDefaults.buttonColors(
-                            contentColor = Color.Transparent,
-                            backgroundColor = Color.Transparent
-                        ),
-                        elevation = ButtonDefaults.elevation(
-                            defaultElevation = 0.dp,
-                            pressedElevation = 0.dp
-                        ),
-                        shape = RoundedCornerShape(20.dp),
-                        modifier = Modifier.weight(1f)
-
-                    ) {
-                        Image(
-                            painterResource("ic_bell.xml"),
-                            ""
-                        )
-                        Spacer(modifier = Modifier.width(6.dp))
-                        Text(
-                            text = "Notifications", style = TextStyle(
-                                color = Color(0xff2C2B34),
-                                fontFamily = FontFamily(fontResources("barlow_semi_bold")),
-                            )
-                        )
-
-                    }
-                }
-
-                Spacer(modifier = Modifier.height(12.dp))
-
-                Card(
-                    shape = RoundedCornerShape(20.dp),
-                    backgroundColor = Color(0xffF3F3F3)
-
+                Column(
+                    Modifier.padding(20.dp, 0.dp).verticalScroll(rememberScrollState()),
                 ) {
+                    Row(modifier = Modifier.fillMaxWidth()) {
 
-
-                    Column(modifier = Modifier.padding(20.dp)) {
-                        Text(
-                            text = "NEAREST CAR",
-                            style = TextStyle(
-                                color = Color(0xff787878),
-                                fontSize = 12.sp,
-                                fontFamily = FontFamily(fontResources("barlow_light")),
+                        Button(
+                            {},
+                            colors = ButtonDefaults.buttonColors(
+                                contentColor = Color.Transparent,
+                                backgroundColor = Color.Transparent
                             ),
-                        )
-
-                        Image(
-                            painter = painterResource(state.currentModel.image),
-                            contentDescription = "",
-                            modifier = Modifier.align(Alignment.CenterHorizontally)
-                        )
-
-                        Spacer(Modifier.height(10.dp))
-
-                        Text(
-                            text = state.currentModel.name, style = TextStyle(
-                                color = Color(0xff2C2B34),
-                                fontSize = 18.sp,
-                                fontFamily = FontFamily(fontResources("barlow_bold")),
-                            )
-                        )
-
-                        Spacer(Modifier.height(6.dp))
-
-                        Row(
-                            modifier = Modifier.padding(0.dp, 6.dp),
-                            verticalAlignment = Alignment.CenterVertically
+                            elevation = ButtonDefaults.elevation(
+                                defaultElevation = 0.dp,
+                                pressedElevation = 0.dp
+                            ),
+                            shape = RoundedCornerShape(20.dp),
+                            modifier = Modifier.weight(1f)
                         ) {
                             Image(
-                                painter = painterResource("ic_gps2.xml"),
-                                contentDescription = "",
-
-                                )
+                                painterResource(resource = DrawableResource("ic_info.xml")),
+                                ""
+                            )
+                            Spacer(modifier = Modifier.width(6.dp))
                             Text(
-                                text = "${state.currentModel.kms}Km",
-                                fontFamily = FontFamily(fontResources("barlow_regular")),
-                                style = TextStyle(
-                                    color = Color(0xff787878),
-                                ),
-                                modifier = Modifier.padding(6.dp, 0.dp)
+                                text = "Information", style = TextStyle(
+                                    color = Color(0xff2C2B34),
+                                    fontFamily = FontFamily(fontResources("barlow_semi_bold")),
+                                )
                             )
 
-                            Spacer(Modifier.width(14.dp))
+                        }
 
+                        Spacer(modifier = Modifier.width(12.dp))
 
+                        Button(
+                            {},
+                            colors = ButtonDefaults.buttonColors(
+                                contentColor = Color.Transparent,
+                                backgroundColor = Color.Transparent
+                            ),
+                            elevation = ButtonDefaults.elevation(
+                                defaultElevation = 0.dp,
+                                pressedElevation = 0.dp
+                            ),
+                            shape = RoundedCornerShape(20.dp),
+                            modifier = Modifier.weight(1f)
+
+                        ) {
                             Image(
-                                painter = painterResource("ic_gas_pump2.xml"),
-                                contentDescription = "",
-
-                                )
-
-                            Text(
-                                text = "${state.currentModel.fule}",
-                                fontFamily = FontFamily(fontResources("barlow_regular")),
-                                style = TextStyle(
-                                    color = Color(0xff787878),
-                                ),
-                                modifier = Modifier.padding(6.dp, 0.dp, 0.dp, 0.dp)
+                                painterResource(resource = DrawableResource("ic_bell.xml")),
+                                ""
                             )
+                            Spacer(modifier = Modifier.width(6.dp))
                             Text(
-                                text = if (state.currentModel.isEv) "%" else "L",
-                                fontFamily = FontFamily(fontResources("barlow_regular")),
-                                style = TextStyle(
-                                    color = Color(0xff787878),
+                                text = "Notifications", style = TextStyle(
+                                    color = Color(0xff2C2B34),
+                                    fontFamily = FontFamily(fontResources("barlow_semi_bold")),
                                 )
                             )
 
-                            Text(
-                                text = "$ 45,00/h",
-                                fontFamily = FontFamily(fontResources("barlow_semi_bold")),
-                                style = TextStyle(
-                                    color = Color.Black,
-                                    fontSize = 16.sp
-                                ),
-                                modifier = Modifier.weight(1f),
-                                textAlign = TextAlign.End
-                            )
                         }
                     }
 
-                }
-
-                Spacer(Modifier.height(12.dp))
-
-                Row(modifier = Modifier.height(IntrinsicSize.Min)) {
+                    Spacer(modifier = Modifier.height(12.dp))
 
                     Card(
                         shape = RoundedCornerShape(20.dp),
-                        backgroundColor = Color(0xffF3F3F3),
-                        modifier = Modifier.weight(1f),
+                        backgroundColor = Color(0xffF3F3F3)
+
                     ) {
 
 
-                        Column(
-                            modifier = Modifier.padding(20.dp),
-                            horizontalAlignment = Alignment.CenterHorizontally
-                        ) {
-
-
-                            Image(
-                                painter = painterResource("user.png"),
-                                contentDescription = "",
+                        Column(modifier = Modifier.padding(20.dp)) {
+                            Text(
+                                text = "NEAREST CAR",
+                                style = TextStyle(
+                                    color = Color(0xff787878),
+                                    fontSize = 12.sp,
+                                    fontFamily = FontFamily(fontResources("barlow_light")),
+                                ),
                             )
 
-                            Spacer(Modifier.height(8.dp))
+                            Image(
+                                painter = painterResource(resource = DrawableResource(state.currentModel.image)),
+                                contentDescription = "",
+                                modifier = Modifier.align(Alignment.CenterHorizontally)
+                            )
+
+                            Spacer(Modifier.height(10.dp))
 
                             Text(
-                                text = "Jane Cooper", style = TextStyle(
+                                text = state.currentModel.name, style = TextStyle(
                                     color = Color(0xff2C2B34),
-                                    fontSize = 16.sp,
+                                    fontSize = 18.sp,
                                     fontFamily = FontFamily(fontResources("barlow_bold")),
                                 )
                             )
 
-                            Spacer(Modifier.height(4.dp))
+                            Spacer(Modifier.height(6.dp))
 
-                            Text(
-                                text = "$ 4,253", style = TextStyle(
-                                    color = Color(0xff2C2B34),
-                                    fontFamily = FontFamily(fontResources("barlow_bold")),
+                            Row(
+                                modifier = Modifier.padding(0.dp, 6.dp),
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Image(
+                                    painter = painterResource(resource = DrawableResource("ic_gps2.xml")),
+                                    contentDescription = "",
+
+                                    )
+                                Text(
+                                    text = "${state.currentModel.kms}Km",
+                                    fontFamily = FontFamily(fontResources("barlow_regular")),
+                                    style = TextStyle(
+                                        color = Color(0xff787878),
+                                    ),
+                                    modifier = Modifier.padding(6.dp, 0.dp)
                                 )
-                            )
+
+                                Spacer(Modifier.width(14.dp))
+
+
+                                Image(
+                                    painter = painterResource(resource = DrawableResource("ic_gas_pump2.xml")),
+                                    contentDescription = "",
+
+                                    )
+
+                                Text(
+                                    text = "${state.currentModel.fule}",
+                                    fontFamily = FontFamily(fontResources("barlow_regular")),
+                                    style = TextStyle(
+                                        color = Color(0xff787878),
+                                    ),
+                                    modifier = Modifier.padding(6.dp, 0.dp, 0.dp, 0.dp)
+                                )
+                                Text(
+                                    text = if (state.currentModel.isEv) "%" else "L",
+                                    fontFamily = FontFamily(fontResources("barlow_regular")),
+                                    style = TextStyle(
+                                        color = Color(0xff787878),
+                                    )
+                                )
+
+                                Text(
+                                    text = "$ 45,00/h",
+                                    fontFamily = FontFamily(fontResources("barlow_semi_bold")),
+                                    style = TextStyle(
+                                        color = Color.Black,
+                                        fontSize = 16.sp
+                                    ),
+                                    modifier = Modifier.weight(1f),
+                                    textAlign = TextAlign.End
+                                )
+                            }
                         }
 
                     }
 
-                    Spacer(modifier = Modifier.width(10.dp))
+                    Spacer(Modifier.height(12.dp))
 
+                    Row(modifier = Modifier.height(IntrinsicSize.Min)) {
+
+                        Card(
+                            shape = RoundedCornerShape(20.dp),
+                            backgroundColor = Color(0xffF3F3F3),
+                            modifier = Modifier.weight(1f),
+                        ) {
+
+
+                            Column(
+                                modifier = Modifier.padding(20.dp),
+                                horizontalAlignment = Alignment.CenterHorizontally
+                            ) {
+
+
+                                Image(
+                                    painter = painterResource(resource = DrawableResource("user.png")),
+                                    contentDescription = "",
+                                )
+
+                                Spacer(Modifier.height(8.dp))
+
+                                Text(
+                                    text = "Jane Cooper", style = TextStyle(
+                                        color = Color(0xff2C2B34),
+                                        fontSize = 16.sp,
+                                        fontFamily = FontFamily(fontResources("barlow_bold")),
+                                    )
+                                )
+
+                                Spacer(Modifier.height(4.dp))
+
+                                Text(
+                                    text = "$ 4,253", style = TextStyle(
+                                        color = Color(0xff2C2B34),
+                                        fontFamily = FontFamily(fontResources("barlow_bold")),
+                                    )
+                                )
+                            }
+
+                        }
+
+                        Spacer(modifier = Modifier.width(10.dp))
+
+
+                        Card(
+                            shape = RoundedCornerShape(20.dp),
+                            backgroundColor = Color(0xffF3F3F3),
+                            modifier = Modifier.weight(1f)
+
+                        ) {
+                            Image(
+                                painter = painterResource(resource = DrawableResource("map.png")),
+                                contentDescription = "",
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier.clickable {
+                                    listener.onClickToDetail()
+                                }
+                            )
+                        }
+                    }
+
+                    Spacer(Modifier.height(12.dp))
 
                     Card(
                         shape = RoundedCornerShape(20.dp),
-                        backgroundColor = Color(0xffF3F3F3),
-                        modifier = Modifier.weight(1f)
-
+                        backgroundColor = Color(0xff282931),
                     ) {
-                        Image(
-                            painter = painterResource("map.png"),
-                            contentDescription = "",
-                            contentScale = ContentScale.Crop,
-                            modifier = Modifier.clickable {
-                                listener.onClickToDetail()
+
+
+                        Column(modifier = Modifier.padding(20.dp)) {
+
+                            Text(
+                                text = "More Cars",
+                                style = TextStyle(
+                                    color = Color(0xffD4D4D4),
+                                    fontSize = 12.sp,
+                                    fontFamily = FontFamily(fontResources("barlow_light")),
+                                ),
+                            )
+
+
+                            state.getMoreCars.forEachIndexed { i, it ->
+                                ItemMoreCars(it, listener)
+                                if (i + 1 < state.getMoreCars.size) {
+
+                                    Spacer(
+                                        modifier = Modifier.fillMaxWidth().height(0.5.dp)
+                                            .background(Color.White)
+                                    )
+                                }
                             }
-                        )
+
+
+                        }
+
                     }
+
+                    Spacer(modifier = Modifier.height(20.dp))
                 }
+            } else {
 
-                Spacer(Modifier.height(12.dp))
-
-                Card(
-                    shape = RoundedCornerShape(20.dp),
-                    backgroundColor = Color(0xff282931),
+                Column(
+                    Modifier.padding(20.dp).verticalScroll(rememberScrollState()),
                 ) {
+                    Row(modifier = Modifier.fillMaxWidth()) {
 
-
-                    Column(modifier = Modifier.padding(20.dp)) {
-
-                        Text(
-                            text = "More Cars",
-                            style = TextStyle(
-                                color = Color(0xffD4D4D4),
-                                fontSize = 12.sp,
-                                fontFamily = FontFamily(fontResources("barlow_light")),
+                        Button(
+                            {},
+                            colors = ButtonDefaults.buttonColors(
+                                contentColor = Color.Transparent,
+                                backgroundColor = Color.Transparent
                             ),
-                        )
-
-
-                        state.getMoreCars.forEachIndexed { i, it ->
-                            ItemMoreCars(it, listener)
-                            if (i + 1 < state.getMoreCars.size) {
-
-                                Spacer(
-                                    modifier = Modifier.fillMaxWidth().height(0.5.dp)
-                                        .background(Color.White)
+                            elevation = ButtonDefaults.elevation(
+                                defaultElevation = 0.dp,
+                                pressedElevation = 0.dp
+                            ),
+                            shape = RoundedCornerShape(20.dp),
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            Image(
+                                painterResource(resource = DrawableResource("ic_info.xml")),
+                                ""
+                            )
+                            Spacer(modifier = Modifier.width(6.dp))
+                            Text(
+                                text = "Information", style = TextStyle(
+                                    color = Color(0xff2C2B34),
+                                    fontFamily = FontFamily(fontResources("barlow_semi_bold")),
                                 )
+                            )
+
+                        }
+
+                        Spacer(modifier = Modifier.width(12.dp))
+
+                        Button(
+                            {},
+                            colors = ButtonDefaults.buttonColors(
+                                contentColor = Color.Transparent,
+                                backgroundColor = Color.Transparent
+                            ),
+                            elevation = ButtonDefaults.elevation(
+                                defaultElevation = 0.dp,
+                                pressedElevation = 0.dp
+                            ),
+                            shape = RoundedCornerShape(20.dp),
+                            modifier = Modifier.weight(1f)
+
+                        ) {
+                            Image(
+                                painterResource(resource = DrawableResource("ic_bell.xml")),
+                                ""
+                            )
+                            Spacer(modifier = Modifier.width(6.dp))
+                            Text(
+                                text = "Notifications", style = TextStyle(
+                                    color = Color(0xff2C2B34),
+                                    fontFamily = FontFamily(fontResources("barlow_semi_bold")),
+                                )
+                            )
+
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(12.dp))
+
+                    Row {
+
+                        Column(modifier = Modifier.weight(1f)) {
+                            Card(
+                                shape = RoundedCornerShape(20.dp),
+                                backgroundColor = Color(0xffF3F3F3)
+
+                            ) {
+
+
+                                Column(modifier = Modifier.padding(20.dp)) {
+                                    Text(
+                                        text = "NEAREST CAR",
+                                        style = TextStyle(
+                                            color = Color(0xff787878),
+                                            fontSize = 12.sp,
+                                            fontFamily = FontFamily(fontResources("barlow_light")),
+                                        ),
+                                    )
+
+                                    Image(
+                                        painter = painterResource(resource = DrawableResource(state.currentModel.image)),
+                                        contentDescription = "",
+                                        modifier = Modifier.align(Alignment.CenterHorizontally)
+                                    )
+
+                                    Spacer(Modifier.height(10.dp))
+
+                                    Text(
+                                        text = state.currentModel.name, style = TextStyle(
+                                            color = Color(0xff2C2B34),
+                                            fontSize = 18.sp,
+                                            fontFamily = FontFamily(fontResources("barlow_bold")),
+                                        )
+                                    )
+
+                                    Spacer(Modifier.height(6.dp))
+
+                                    Row(
+                                        modifier = Modifier.padding(0.dp, 6.dp),
+                                        verticalAlignment = Alignment.CenterVertically
+                                    ) {
+                                        Image(
+                                            painter = painterResource(resource = DrawableResource("ic_gps2.xml")),
+                                            contentDescription = "",
+
+                                            )
+                                        Text(
+                                            text = "${state.currentModel.kms}Km",
+                                            fontFamily = FontFamily(fontResources("barlow_regular")),
+                                            style = TextStyle(
+                                                color = Color(0xff787878),
+                                            ),
+                                            modifier = Modifier.padding(6.dp, 0.dp)
+                                        )
+
+                                        Spacer(Modifier.width(14.dp))
+
+
+                                        Image(
+                                            painter = painterResource(resource = DrawableResource("ic_gas_pump2.xml")),
+                                            contentDescription = "",
+
+                                            )
+
+                                        Text(
+                                            text = "${state.currentModel.fule}",
+                                            fontFamily = FontFamily(fontResources("barlow_regular")),
+                                            style = TextStyle(
+                                                color = Color(0xff787878),
+                                            ),
+                                            modifier = Modifier.padding(6.dp, 0.dp, 0.dp, 0.dp)
+                                        )
+                                        Text(
+                                            text = if (state.currentModel.isEv) "%" else "L",
+                                            fontFamily = FontFamily(fontResources("barlow_regular")),
+                                            style = TextStyle(
+                                                color = Color(0xff787878),
+                                            )
+                                        )
+
+                                        Text(
+                                            text = "$ 45,00/h",
+                                            fontFamily = FontFamily(fontResources("barlow_semi_bold")),
+                                            style = TextStyle(
+                                                color = Color.Black,
+                                                fontSize = 16.sp
+                                            ),
+                                            modifier = Modifier.weight(1f),
+                                            textAlign = TextAlign.End
+                                        )
+                                    }
+                                }
+
                             }
+                            Spacer(Modifier.height(12.dp))
+
+                            Row(modifier = Modifier.height(IntrinsicSize.Min)) {
+
+                                Card(
+                                    shape = RoundedCornerShape(20.dp),
+                                    backgroundColor = Color(0xffF3F3F3),
+                                    modifier = Modifier.weight(1f),
+                                ) {
+
+
+                                    Column(
+                                        modifier = Modifier.padding(20.dp),
+                                        horizontalAlignment = Alignment.CenterHorizontally
+                                    ) {
+
+
+                                        Image(
+                                            painter = painterResource(resource = DrawableResource("user.png")),
+                                            contentDescription = "",
+                                        )
+
+                                        Spacer(Modifier.height(8.dp))
+
+                                        Text(
+                                            text = "Jane Cooper", style = TextStyle(
+                                                color = Color(0xff2C2B34),
+                                                fontSize = 16.sp,
+                                                fontFamily = FontFamily(fontResources("barlow_bold")),
+                                            )
+                                        )
+
+                                        Spacer(Modifier.height(4.dp))
+
+                                        Text(
+                                            text = "$ 4,253", style = TextStyle(
+                                                color = Color(0xff2C2B34),
+                                                fontFamily = FontFamily(fontResources("barlow_bold")),
+                                            )
+                                        )
+                                    }
+
+                                }
+
+                                Spacer(modifier = Modifier.width(10.dp))
+
+
+                                Card(
+                                    shape = RoundedCornerShape(20.dp),
+                                    backgroundColor = Color(0xffF3F3F3),
+                                    modifier = Modifier.weight(1f)
+
+                                ) {
+                                    Image(
+                                        painter = painterResource(resource = DrawableResource("map.png")),
+                                        contentDescription = "",
+                                        contentScale = ContentScale.Crop,
+                                        modifier = Modifier.clickable {
+                                            listener.onClickToDetail()
+                                        }
+                                    )
+                                }
+                            }
+
+                            Spacer(Modifier.height(12.dp))
+                        }
+                        Spacer(modifier = Modifier.width(12.dp))
+
+                        Column(modifier = Modifier.weight(1f)) {
+
+                            Card(
+                                shape = RoundedCornerShape(20.dp),
+                                backgroundColor = Color(0xff282931),
+                            ) {
+
+
+                                Column(modifier = Modifier.padding(20.dp)) {
+
+                                    Text(
+                                        text = "More Cars",
+                                        style = TextStyle(
+                                            color = Color(0xffD4D4D4),
+                                            fontSize = 12.sp,
+                                            fontFamily = FontFamily(fontResources("barlow_light")),
+                                        ),
+                                    )
+
+
+                                    state.getMoreCars.forEachIndexed { i, it ->
+                                        ItemMoreCars(it, listener)
+                                        if (i + 1 < state.getMoreCars.size) {
+
+                                            Spacer(
+                                                modifier = Modifier.fillMaxWidth().height(0.5.dp)
+                                                    .background(Color.White)
+                                            )
+                                        }
+                                    }
+
+
+                                }
+
+                            }
+
+                            Spacer(modifier = Modifier.height(20.dp))
                         }
 
 
                     }
 
                 }
-
-                Spacer(modifier = Modifier.height(20.dp))
 
             }
+
         }
+
     }
 
     @OptIn(ExperimentalResourceApi::class)
@@ -350,7 +629,7 @@ class DashBoardScreen :
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Image(
-                        painter = painterResource("ic_gps.xml"),
+                        painter = painterResource(resource = DrawableResource("ic_gps.xml")),
                         contentDescription = "",
 
                         )
@@ -367,7 +646,7 @@ class DashBoardScreen :
 
 
                     Image(
-                        painter = painterResource(if (model.isEv) "ic_battery.xml" else "ic_gas_pump.xml"),
+                        painter = painterResource(resource = DrawableResource(if (model.isEv) "ic_battery.xml" else "ic_gas_pump.xml")),
                         contentDescription = "",
 
                         )
@@ -393,7 +672,7 @@ class DashBoardScreen :
             }
 
             Image(
-                painter = painterResource("ic_arrow_left.xml"),
+                painter = painterResource(resource = DrawableResource("ic_arrow_left.xml")),
                 contentDescription = "",
                 modifier = Modifier.size(32.dp)
                     .background(shape = RoundedCornerShape(50), color = Color.White)
@@ -412,5 +691,9 @@ class DashBoardScreen :
         when (effect) {
             DashBoardUIEffect.NavigateToDetail -> navigator.push(DetailScreen())
         }
+    }
+
+    companion object {
+        private const val MAP_URL = "File:///android_asset/bing_map/map/index.html"
     }
 }

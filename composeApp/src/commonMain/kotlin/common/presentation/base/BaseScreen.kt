@@ -25,7 +25,7 @@ abstract class BaseScreen<VM, S, E, I> : Screen
         val navigator = LocalNavigator.currentOrThrow
 
         onRender(state, viewModel)
-        Listen(viewModel.effect){
+        Listen(viewModel.effect) {
             onEffect(effect = it, navigator = navigator)
         }
     }

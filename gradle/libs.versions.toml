@@ -1,20 +1,20 @@
 [versions]
-agp = "8.1.4"
+agp = "8.2.2"
 android-compileSdk = "34"
 android-minSdk = "24"
 android-targetSdk = "34"
-androidx-activityCompose = "1.8.2"
+androidx-activityCompose = "1.9.0"
 androidx-appcompat = "1.6.1"
 androidx-constraintlayout = "2.1.4"
-androidx-core-ktx = "1.12.0"
+androidx-core-ktx = "1.13.1"
 androidx-espresso-core = "3.5.1"
 androidx-material = "1.11.0"
 androidx-test-junit = "1.1.5"
-compose = "1.5.4"
+compose = "1.6.7"
 compose-compiler = "1.5.8"
-compose-plugin = "1.5.11"
+compose-plugin = "1.6.2"
 junit = "4.13.2"
-kotlin = "1.9.21"
+kotlin = "1.9.23"
 
 voyager-version = "1.0.0-rc07"
 
@@ -29,6 +29,19 @@ coroutine-version = "1.7.3"
 ktor-version = "2.3.3"
 ktor-logging-version = "1.5.0"
 serialization_version = "1.6.0"
+
+calf = "0.2.0"
+
+roomKtx = "2.6.1"
+sqliteBundledJvm = "2.5.0-alpha02"
+sqliteBundledAndroid = "2.5.0-alpha02"
+
+#Room
+androidx-room = "2.7.0-alpha01"
+ksp = "1.9.23-1.0.19"
+sqlite = "2.5.0-SNAPSHOT"
+pagingComposeAndroid = "3.3.0-rc01"
+androidx-paging = "3.3.0-rc01"
 
 
 [libraries]
@@ -63,8 +76,9 @@ koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin-version" 
 koin-annotations = { module = "io.insert-koin:koin-annotations", version.ref = "koinKspVersion" }
 koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koin-compose-version" }
 
-
+#datetime
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlin-datetime-version" }
+#coroutines
 kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutine-version" }
 
 #ktor
@@ -75,9 +89,22 @@ ktor-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation",
 ktor-json-serialization = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor-version" }
 kotlin-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization_version" }
 
+#calf
+calf = { module = "com.mohamedrejeb.calf:calf-ui", version.ref = "calf" }
+
+#room
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "androidx-room" }
+androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "androidx-room" }
+androidx-room-paging = { group = "androidx.room", name = "room-paging", version.ref = "androidx-room" }
+androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "androidx-room" }
+androidx-sqlite-bundled-jvm = { group = "androidx.sqlite", name = "sqlite-bundled-jvm", version.ref = "sqliteBundledJvm" }
+androidx-sqlite-bundled-android = { group = "androidx.sqlite", name = "sqlite-bundled-android", version.ref = "sqliteBundledAndroid" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+
+room = { id = "androidx.room", version.ref = "androidx-room" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }

@@ -4,10 +4,11 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import common.di.appModule
 import common.presentation.app.App
+import org.koin.core.KoinApplication
 import org.koin.core.context.startKoin
 
 fun main() = application {
-    startKoin { modules(appModule()) }
+    startKoin { modules(appModule(KoinApplication.init())) }
 
     Window(onCloseRequest = ::exitApplication, title = "KMMDEMO") {
         App()
