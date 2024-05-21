@@ -8,6 +8,6 @@ interface RoomInteractionListener : BaseInteractionListener {
     fun addToDataBase()
     fun deleteAll()
     fun deleteById(id: Int)
-    suspend fun getAllEmployee()
+    fun getAllEmployee()
 
 }

@@ -15,11 +15,7 @@ class RoomScreenModel(private val manageRoomUseCase: IManageRoomUseCase) :
     override val viewModelScope: CoroutineScope = coroutineScope
 
     init {
-
-        CoroutineScope(Dispatchers.IO).launch {
             getAllEmployee()
-
-        }
     }
 
     override fun updateName(string: String) {
@@ -52,10 +48,11 @@ class RoomScreenModel(private val manageRoomUseCase: IManageRoomUseCase) :
         }
     }
 
-    override suspend fun getAllEmployee() {
-        manageRoomUseCase.getAllEmployee().collect { list ->
-            updateState { it.copy(allEmployee = list) }
-
+    override fun getAllEmployee() {
+        CoroutineScope(Dispatchers.IO).launch {
+            manageRoomUseCase.getAllEmployee().collect { list ->
+                updateState { it.copy(allEmployee = list) }
+            }
         }
     }
 

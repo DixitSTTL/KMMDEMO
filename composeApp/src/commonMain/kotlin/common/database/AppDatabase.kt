@@ -16,7 +16,7 @@ import kotlinx.coroutines.IO
 @Database(entities = [DataMoreCars::class, DataEmployee::class], version = 2)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun employeeDao(): EmployeeDao
-    abstract fun getDao(): CarDao
+    abstract fun carDao(): CarDao
 }
 
 fun getRoomDatabase(

@@ -52,14 +52,7 @@ class FakeMoreCarsGateway(private val appDatabase: AppDatabase) : IFakeMoreCarsG
 
     override suspend fun addToRoom(dataMoreCars: DataMoreCars) {
 
-        appDatabase.getDao().insert(dataMoreCars)
-
-        appDatabase.getDao().getAllAsFlow().collect(FlowCollector {
-
-            it.forEach {
-                println("DAtaCarrr-- " + it)
-            }
-        })
+        appDatabase.carDao().insert(dataMoreCars)
 
     }
 }
