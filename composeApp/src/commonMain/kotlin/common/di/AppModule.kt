@@ -1,5 +1,6 @@
 package common.di
 
+import common.util.createData
 import org.koin.core.KoinApplication
 import org.koin.dsl.module
 
@@ -10,4 +11,8 @@ fun appModule(applicationContext: KoinApplication) = module {
         useCaseModule,
         screenModelsModule
     )
+    single{
+       val datastore= createData(applicationContext)
+        datastore
+    }
 }

@@ -80,6 +80,10 @@ kotlin {
             implementation(libs.androidx.room.runtime)
             implementation("androidx.sqlite:sqlite")
             implementation("androidx.sqlite:sqlite-bundled")
+
+            //datastore
+            implementation("androidx.datastore:datastore:1.1.1")
+            implementation("androidx.datastore:datastore-preferences:1.1.1")
 //            implementation(libs.androidx.room.compiler)
 
 

@@ -1,5 +1,6 @@
 package common.presentation.roomDemo
 
+import common.data.model.DataEmployee
 import common.presentation.base.BaseInteractionListener
 
 interface RoomInteractionListener : BaseInteractionListener {
@@ -9,5 +10,6 @@ interface RoomInteractionListener : BaseInteractionListener {
     fun deleteAll()
     fun deleteById(id: Int)
     fun getAllEmployee()
-
+    fun updateUser(dataEmployee: DataEmployee)
+    fun getLatestUser()
 }

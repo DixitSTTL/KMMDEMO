@@ -11,6 +11,8 @@ interface IManageRoomUseCase {
     suspend fun getAllEmployee(): Flow<List<DataEmployee>>
     suspend fun deleteAll()
     suspend fun deleteById(id: Int)
+    suspend fun updateUser(dataEmployee: DataEmployee)
+    suspend fun getLatestUser():Flow<String>
 }
 
 class ManageRoomUseCase(private val localEmployeeGateway: LocalEmployeeGateway) :
@@ -30,6 +32,14 @@ class ManageRoomUseCase(private val localEmployeeGateway: LocalEmployeeGateway) 
 
     override suspend fun deleteById(id: Int) {
         localEmployeeGateway.deleteById(id)
+    }
+
+    override suspend fun updateUser(dataEmployee: DataEmployee) {
+        localEmployeeGateway.updateUser(dataEmployee)
+    }
+
+    override suspend fun getLatestUser(): Flow<String> {
+       return localEmployeeGateway.getLatestUser()
     }
 
 }

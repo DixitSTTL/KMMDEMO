@@ -1,6 +1,8 @@
 package common.presentation.roomDemo
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,11 +19,11 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Card
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
@@ -35,9 +37,11 @@ import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.navigator.Navigator
 import common.data.model.DataEmployee
 import common.presentation.base.BaseScreen
-import common.presentation.dashboard.DashBoardScreen
 import fontResources
 import getPlatform
+import org.jetbrains.compose.resources.DrawableResource
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.painterResource
 
 
 class RoomScreen :
@@ -110,6 +114,15 @@ class RoomScreen :
                     Spacer(Modifier.width(12.dp))
 
                     LazyColumn(Modifier.weight(1f)) {
+                        item {
+                            Text(
+                                text = state.latestUser, style = TextStyle(
+                                    fontFamily = FontFamily(fontResources("barlow_semi_bold")),
+                                    fontSize = 26.sp,
+                                    color = Color(0xff2C2B34)
+                                )
+                            )
+                        }
 
                         items(state.allEmployee) {
                             RoomItem(it, listener)
@@ -200,33 +213,38 @@ class RoomScreen :
     }
 
 
-    @OptIn(ExperimentalMaterialApi::class)
+    @OptIn(ExperimentalResourceApi::class)
     @Composable
     private fun RoomItem(it: DataEmployee, listener: RoomInteractionListener) {
         Card(
             modifier = Modifier.padding(0.dp, 10.dp).fillMaxWidth(),
             shape = RoundedCornerShape(12.dp),
-            elevation = 6.dp,
-            onClick = {
-                listener.deleteById(it.id)
-            }
+            elevation = 6.dp
         ) {
-            Column(Modifier.padding(12.dp)) {
+            Box(Modifier.padding(12.dp)) {
+                Column() {
 
-                Text(
-                    text = it.name, style = TextStyle(
-                        fontFamily = FontFamily(fontResources("barlow_semi_bold")),
-                        fontSize = 18.sp,
-                        color = Color(0xff2C2B34)
+                    Text(
+                        text = it.name, style = TextStyle(
+                            fontFamily = FontFamily(fontResources("barlow_semi_bold")),
+                            fontSize = 18.sp,
+                            color = Color(0xff2C2B34)
+                        )
                     )
-                )
-                Spacer(Modifier.height(6.dp))
-                Text(
-                    text = it.department, style = TextStyle(
-                        fontFamily = FontFamily(fontResources("barlow_regular")),
-                        color = Color(0xff535163)
+                    Spacer(Modifier.height(6.dp))
+                    Text(
+                        text = it.department, style = TextStyle(
+                            fontFamily = FontFamily(fontResources("barlow_regular")),
+                            color = Color(0xff535163)
+                        )
                     )
-                )
+                }
+
+                Image(painter = painterResource(resource = DrawableResource("ic_delete.xml")), "",
+                    modifier = Modifier.align(Alignment.CenterEnd).clickable {
+                        listener.deleteById(it.id)
+                    })
+
             }
         }
     }

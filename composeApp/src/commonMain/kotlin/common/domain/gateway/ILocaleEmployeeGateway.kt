@@ -9,5 +9,7 @@ interface ILocaleEmployeeGateway {
     suspend fun deleteAll()
     suspend fun deleteById(id: Int)
     suspend fun addEmployee(dataEmployee: DataEmployee)
+    suspend fun updateUser(dataEmployee: DataEmployee)
+    suspend fun getLatestUser():Flow<String>
 
 }
