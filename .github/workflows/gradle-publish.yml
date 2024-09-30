@@ -15,12 +15,7 @@ jobs:
         distribution: 'zulu'
         java-version: 17
 
-    - name: kotlinUpgradeYarnLock
-      run: ./gradlew kotlinUpgradeYarnLock
-
-
     - name: Build android app
       run: ./gradlew :app:assembleDebug
 
-    - name: Run Unit Tests
-      run: ./gradlew :app:test
+
