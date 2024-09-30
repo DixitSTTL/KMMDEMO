@@ -19,6 +19,6 @@ jobs:
       run: chmod +x ./gradlew
         
     - name: Build android app
-      run: ./gradlew :app:assembleDebug
+      run: ./gradlew :composeApp:assembleDebug
 
 
