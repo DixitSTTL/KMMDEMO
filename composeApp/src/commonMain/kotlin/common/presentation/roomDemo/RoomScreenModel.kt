@@ -32,7 +32,6 @@ class RoomScreenModel(private val manageRoomUseCase: IManageRoomUseCase) :
         CoroutineScope(Dispatchers.IO).launch {
             val dataEmployee = DataEmployee(0, state.value.txtName, state.value.txtDepartment)
             manageRoomUseCase.addToRoom(dataEmployee)
-            manageRoomUseCase.updateUser(dataEmployee)
             updateState { it.copy(txtName = "", txtDepartment = "") }
         }
 

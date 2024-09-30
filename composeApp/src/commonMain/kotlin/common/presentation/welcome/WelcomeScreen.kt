@@ -51,10 +51,13 @@ class WelcomeScreen :
     override fun onRender(state: WelcomeUIState, listener: WelcomeInteractionListener) {
 
 
-        LaunchedEffect(true) {
-            delay(600)
-            listener.onShowContent(!state.showContent)
+        if (!state.showContent){
+            LaunchedEffect(Unit) {
+                delay(600)
+                listener.onShowContent(!state.showContent)
+                }
         }
+
 
         Box(Modifier.fillMaxSize().background(color = Color(0xff232325))) {
             AnimatedVisibility(state.showContent) {

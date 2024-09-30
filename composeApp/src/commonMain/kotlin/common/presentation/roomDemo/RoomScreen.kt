@@ -19,6 +19,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Card
+import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
@@ -240,10 +241,13 @@ class RoomScreen :
                     )
                 }
 
-                Image(painter = painterResource(resource = DrawableResource("ic_delete.xml")), "",
-                    modifier = Modifier.align(Alignment.CenterEnd).clickable {
-                        listener.deleteById(it.id)
-                    })
+
+                IconButton(onClick = {
+                    listener.deleteById(it.id)
+                }, Modifier.align(Alignment.CenterEnd)) {
+
+                    Image(painter = painterResource(resource = DrawableResource("ic_delete.xml")),"")
+                }
 
             }
         }

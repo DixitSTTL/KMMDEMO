@@ -19,6 +19,7 @@ class ManageRoomUseCase(private val localEmployeeGateway: LocalEmployeeGateway) 
     IManageRoomUseCase {
     override suspend fun addToRoom(dataEmployee: DataEmployee) {
         localEmployeeGateway.addEmployee(dataEmployee)
+        localEmployeeGateway.updateUser(dataEmployee)
     }
 
     override suspend fun getAllEmployee(): Flow<List<DataEmployee>> {

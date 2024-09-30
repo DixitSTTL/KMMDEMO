@@ -152,7 +152,7 @@ compose.desktop {
 
             windows{
                 shortcut = true
-                vendor = "Dixit Kukadiya"
+                vendor = "Odyssey Studio"
             }
             //.\gradlew createDistributable
 

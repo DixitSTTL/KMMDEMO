@@ -34,14 +34,14 @@ class LocalEmployeeGateway(
 
     override suspend fun updateUser(dataEmployee: DataEmployee) {
         dataStoreInstance.edit {
-            it[stringPreferencesKey("dixit")] = dataEmployee.name
+            it[stringPreferencesKey("USER")] = dataEmployee.name
         }
     }
 
     override suspend fun getLatestUser(): Flow<String> {
 
         return dataStoreInstance.data.map {
-            it[stringPreferencesKey("dixit")].toString()
+            it[stringPreferencesKey("USER")].toString()
         }
     }
 }
